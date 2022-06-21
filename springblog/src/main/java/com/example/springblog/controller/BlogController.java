@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  * @author vladmir
  */
-@Controller
-public class HomeController {
 
-    @GetMapping("/blog")
-    public String blog(Model model) {
-        return "blog";
-    }
+@Controller
+public class BlogController {
+    
+    @GetMapping("/home")
+    public String home (Model model){
+    model.addAttribute("title", "Главная страница");
+    return "home";}
 }

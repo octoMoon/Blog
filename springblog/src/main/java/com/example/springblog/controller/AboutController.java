@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author vladmir
  */
 @Controller
-public class HomeController {
+public class AboutController {
 
-    @GetMapping("/blog")
-    public String blog(Model model) {
-        return "blog";
+    @GetMapping("/about")
+    public String home(Model model) {
+       
+        return "about";
     }
 }
