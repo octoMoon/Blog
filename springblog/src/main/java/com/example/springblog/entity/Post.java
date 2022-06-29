@@ -22,8 +22,17 @@ public class Post {
     private String title;
     private String anons;
     private String fullText;
-    private int views;
 
+    public Post(String title, String anons, String fullText) {
+        this.title = title;
+        this.anons = anons;
+        this.fullText = fullText;
+    }
+
+    public Post() {
+    }
+    
+    
     public Long getId() {
         return id;
     }
@@ -56,12 +65,5 @@ public class Post {
         this.fullText = fullText;
     }
 
-    public int getViews() {
-        return views;
-    }
-
-    public void setViews(int views) {
-        this.views = views;
-    }
     
 }
