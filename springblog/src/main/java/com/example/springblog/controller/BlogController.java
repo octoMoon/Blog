@@ -49,7 +49,7 @@ public class BlogController {
 
     @GetMapping("/blog/{id}")
     public String blogDetails(@PathVariable(value = "id") long id, Model model) {
-        if (repo.existsById(id)) {
+        if (!repo.existsById(id)) {
             return "redirect:/blog";
         }
         Optional<Post> post = repo.findById(id);
@@ -57,5 +57,36 @@ public class BlogController {
         post.ifPresent(result::add);
         model.addAttribute("post", result);
         return "blogDetails";
+    }
+
+    @GetMapping("/blog/{id}/edit")
+    public String blogEdit(@PathVariable(value = "id") long id, Model model) {
+        if (!repo.existsById(id)) {
+            return "redirect:/blog";
+        }
+        Optional<Post> post = repo.findById(id);
+        ArrayList<Post> result = new ArrayList<>();
+        post.ifPresent(result::add);
+        model.addAttribute("post", result);
+        return "blogEdit";
+    }
+
+    @PostMapping("/blog/{id}/edit")
+    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title,
+            @RequestParam String anons,
+            @RequestParam String fullText, Model model) {
+        Post post = repo.findById(id).orElseThrow();
+        post.setTitle(title);
+        post.setAnons(anons);
+        post.setFullText(fullText);
+        repo.save(post);
+        return "redirect:/blog/{id}";
+    }
+
+    @PostMapping("/blog/{id}/remove")
+    public String blogPostDel(@PathVariable(value = "id") long id, Model model) {
+        Post post = repo.findById(id).orElseThrow();
+        repo.delete(post);
+        return "redirect:/blog";
     }
 }
