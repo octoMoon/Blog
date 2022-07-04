@@ -20,4 +20,9 @@ public class HomeController {
     public String home (Model model){
     model.addAttribute("title", "Главная страница");
     return "home";}
+    
+    @GetMapping("/hello")
+    public String hello (Model model){
+    model.addAttribute("title", "Главная страница");
+    return "hello";}
 }

@@ -5,10 +5,12 @@
 package com.example.springblog.controller;
 
 import com.example.springblog.entity.Post;
+import com.example.springblog.entity.User;
 import com.example.springblog.repository.PostRepo;
 import java.util.ArrayList;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,10 +41,12 @@ public class BlogController {
     }
 
     @PostMapping("/blog/add")
-    public String blogPostAdd(@RequestParam String title,
+    public String blogPostAdd(
+            @AuthenticationPrincipal User user,
+            @RequestParam String title,
             @RequestParam String anons,
             @RequestParam String fullText, Model model) {
-        Post post = new Post(title, anons, fullText);
+        Post post = new Post(title, anons, fullText, user);
         repo.save(post);
         return "redirect:/blog";
     }

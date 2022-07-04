@@ -23,7 +23,7 @@ public class Post {
     private String anons;
     private String fullText;
 
-    public Post(String title, String anons, String fullText) {
+    public Post(String title, String anons, String fullText, User user) {
         this.title = title;
         this.anons = anons;
         this.fullText = fullText;
