@@ -36,7 +36,10 @@ public class RegistrationController {
     
     
 @PostMapping("/registration")
-    public String addUser(User user, Model model){     
+    public String addUser(User user, Model model){
+        if(user != null){
+            model.addAttribute("error", "error");
+        return "registration";}
        user.setActive(true);
        user.setRoles(Collections.singleton(Role.USER));
        repo.save(user);

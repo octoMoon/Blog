@@ -21,8 +21,8 @@ public class HomeController {
     model.addAttribute("title", "Главная страница");
     return "home";}
     
-    @GetMapping("/hello")
+    @GetMapping("/exit")
     public String hello (Model model){
     model.addAttribute("title", "Главная страница");
-    return "hello";}
+    return "exit";}
 }
